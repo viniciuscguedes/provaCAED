@@ -1,0 +1,33 @@
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.python-version
+
+# Temporary & Log Files
+*.log
+*.tmp
+RELATORIO.html
+GUIA_CODIGOS_E_ENVIO.html
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
