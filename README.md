@@ -37,11 +37,9 @@
 git clone https://github.com/viniciuscguedes/provaCAED.git
 cd provaCAED
 
-# Criar e ativar ambiente virtual
 python3 -m venv .venv
 source .venv/bin/activate
 
-# Instalar dependências
 pip install scikit-learn nltk spacy fastapi uvicorn pandas numpy markdown reportlab fpdf2
 ```
 
@@ -74,19 +72,7 @@ provaCAED/
 │   ├── styles.css           # Design System editorial minimalista (Zinc)
 │   └── app.js               # Lógica do cliente, gráficos e visualização de diffs
 ├── dataset_caed/            # Dataset original com 2.076 documentos (.txt)
-├── RELATORIO.pdf            # Relatório técnico oficial para envio (ARQUIVO 2)
-├── RELATORIO.md             # Versão Markdown do relatório
-├── GUIA_CODIGOS_E_ENVIO.pdf # Guia explicativo dos 5 códigos (ARQUIVO 1)
 ├── train_and_eval.py        # Script para treinar e gerar benchmark
 ├── run.py                   # Lançador do servidor Uvicorn
 └── .gitignore               # Exclusões de ambiente virtual e temporários
 ```
-
----
-
-## Documentação Oficial
-- [Relatório Técnico em PDF (`RELATORIO.pdf`)](RELATORIO.pdf)
-- [Guia Explicativo dos Códigos (`GUIA_CODIGOS_E_ENVIO.pdf`)](GUIA_CODIGOS_E_ENVIO.pdf)
-
----
-*Desenvolvido para o Processo Seletivo CAEd 2026.*
