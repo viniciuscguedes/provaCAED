@@ -1,44 +1,35 @@
-/* ==========================================================================
-   DESIGN SYSTEM EDITORIAL & MINIMALISTA - PLATAFORMA CAED FLUÊNCIA AI
-   Paleta Neutra (Zinc), Tipografia Editorial, Alto Contraste, Sem Gradientes
-   ========================================================================== */
-
 :root {
-    /* Palette: Zinc Base Neutral */
     --bg-main: #09090b;
     --bg-surface: #121215;
     --bg-elevated: #18181b;
     --bg-subtle: #27272a;
-    
+
     --border-subtle: #27272a;
     --border-strong: #3f3f46;
-    
+
     --text-heading: #fafafa;
     --text-body: #d4d4d8;
     --text-muted: #a1a1aa;
     --text-dim: #71717a;
-    
-    /* Single Functional Accent (Blue) */
+
     --accent: #2563eb;
     --accent-hover: #1d4ed8;
     --accent-subtle: rgba(37, 99, 235, 0.12);
     --accent-border: rgba(37, 99, 235, 0.4);
-    
-    /* Secondary Status Colors (No neon) */
+
     --status-success: #10b981;
     --status-success-bg: rgba(16, 185, 129, 0.1);
     --status-warning: #f59e0b;
     --status-warning-bg: rgba(245, 158, 11, 0.1);
-    
-    /* Typography */
+
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    
+
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
-    
+
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
     --transition-fast: all 0.15s ease;
 }
@@ -58,7 +49,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Header & Header Navigation */
 .app-header {
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
@@ -167,7 +157,6 @@ body {
     display: block;
 }
 
-/* Minimalist Surface Cards */
 .glass-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
@@ -197,7 +186,8 @@ body {
     border-bottom: 1px solid var(--border-subtle);
 }
 
-.card-header h2, .card-header h3 {
+.card-header h2,
+.card-header h3 {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 600;
@@ -211,7 +201,6 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* Badges & Minimal Chips */
 .badge {
     padding: 0.25rem 0.65rem;
     border-radius: var(--radius-sm);
@@ -269,7 +258,6 @@ body {
     gap: 0.4rem;
 }
 
-/* Form Controls & Inputs */
 .form-group textarea {
     width: 100%;
     background: var(--bg-main);
@@ -334,7 +322,6 @@ body {
     font-size: 0.78rem;
 }
 
-/* Placeholder Box */
 .placeholder-box {
     padding: 3.5rem 1.5rem;
     text-align: center;
@@ -348,7 +335,7 @@ body {
     opacity: 0.4;
 }
 
-/* Prediction Hero Banner */
+
 .prediction-hero-card {
     background: var(--bg-main);
     border: 1px solid var(--border-subtle);
@@ -380,7 +367,6 @@ body {
     margin-top: 0.2rem;
 }
 
-/* Probability Bars List */
 .metric-section {
     margin-top: 1.75rem;
 }
@@ -430,7 +416,6 @@ body {
     background: var(--accent);
 }
 
-/* Canonicity Score Box */
 .canonicity-score-box {
     display: flex;
     align-items: center;
@@ -474,7 +459,6 @@ body {
     font-size: 0.8rem;
 }
 
-/* Word Chips Grid */
 .word-chips-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -515,7 +499,7 @@ body {
     border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
-/* Stats Grid */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -544,7 +528,6 @@ body {
     color: var(--text-heading);
 }
 
-/* Mutation Controls */
 .mutation-controls-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -596,12 +579,12 @@ body {
     transition: var(--transition-fast);
 }
 
-.checkbox-card input:checked + .checkbox-custom {
+.checkbox-card input:checked+.checkbox-custom {
     background: var(--accent);
     border-color: var(--accent);
 }
 
-.checkbox-card input:checked + .checkbox-custom::after {
+.checkbox-card input:checked+.checkbox-custom::after {
     content: '';
     position: absolute;
     top: 2px;
@@ -624,7 +607,6 @@ body {
     color: var(--text-muted);
 }
 
-/* Range Slider */
 .range-slider-container {
     background: var(--bg-main);
     border: 1px solid var(--border-subtle);
@@ -665,7 +647,6 @@ input[type="range"] {
     margin-top: 1rem;
 }
 
-/* Shift Banner */
 .shift-banner {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
@@ -720,7 +701,6 @@ input[type="range"] {
     color: var(--text-muted);
 }
 
-/* Diff Viewer */
 .diff-viewer {
     background: var(--bg-main);
     border: 1px solid var(--border-subtle);
@@ -744,15 +724,47 @@ input[type="range"] {
     font-family: var(--font-mono);
 }
 
-.tag-replace { background: rgba(147, 51, 234, 0.15); color: #c084fc; border: 1px solid rgba(147, 51, 234, 0.3); }
-.tag-insert { background: var(--status-success-bg); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
-.tag-delete { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+.tag-replace {
+    background: rgba(147, 51, 234, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+}
 
-.diff-tok-replace { background: rgba(147, 51, 234, 0.2); color: #e9d5ff; padding: 0.1rem 0.3rem; border-radius: 3px; }
-.diff-tok-insert { background: var(--status-success-bg); color: #a7f3d0; padding: 0.1rem 0.3rem; border-radius: 3px; }
-.diff-tok-delete { background: rgba(239, 68, 68, 0.2); color: #fecdd3; padding: 0.1rem 0.3rem; border-radius: 3px; text-decoration: line-through; }
+.tag-insert {
+    background: var(--status-success-bg);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
 
-/* Tables */
+.tag-delete {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.diff-tok-replace {
+    background: rgba(147, 51, 234, 0.2);
+    color: #e9d5ff;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+}
+
+.diff-tok-insert {
+    background: var(--status-success-bg);
+    color: #a7f3d0;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+}
+
+.diff-tok-delete {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fecdd3;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    text-decoration: line-through;
+}
+
+
 .table-responsive {
     overflow-x: auto;
 }
@@ -764,7 +776,8 @@ input[type="range"] {
     font-size: 0.88rem;
 }
 
-.custom-table th, .custom-table td {
+.custom-table th,
+.custom-table td {
     padding: 0.8rem 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-subtle);
@@ -783,7 +796,7 @@ input[type="range"] {
     background: var(--bg-main);
 }
 
-/* Documentation Body */
+
 .doc-body h3 {
     font-family: var(--font-heading);
     color: var(--text-heading);
@@ -792,7 +805,8 @@ input[type="range"] {
     margin-bottom: 0.5rem;
 }
 
-.doc-body p, .doc-body ul {
+.doc-body p,
+.doc-body ul {
     color: var(--text-muted);
     font-size: 0.9rem;
     margin-bottom: 0.8rem;
@@ -813,12 +827,20 @@ input[type="range"] {
     color: var(--text-body);
 }
 
-/* Utilities */
-.hidden { display: none !important; }
-.margin-top-md { margin-top: 1.5rem; }
-.margin-top-lg { margin-top: 2.5rem; }
 
-/* Footer */
+.hidden {
+    display: none !important;
+}
+
+.margin-top-md {
+    margin-top: 1.5rem;
+}
+
+.margin-top-lg {
+    margin-top: 2.5rem;
+}
+
+
 .app-footer {
     text-align: center;
     padding: 2.5rem 2rem;

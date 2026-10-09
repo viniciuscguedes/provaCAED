@@ -1,7 +1,3 @@
-"""
-Módulo para carregamento e estruturação do dataset do CAEd.
-"""
-
 import os
 import pandas as pd
 from pathlib import Path
@@ -21,9 +17,6 @@ ORDERED_LABELS = [
 ]
 
 def load_dataset(dataset_dir: str = "dataset_caed") -> pd.DataFrame:
-    """
-    Lê todos os arquivos .txt do repositório dataset_caed e constrói um DataFrame.
-    """
     records = []
     base_path = Path(dataset_dir)
     

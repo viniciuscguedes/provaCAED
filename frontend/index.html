@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma CAEd | Avaliação de Fluência Leitora</title>
-    <meta name="description" content="Sistema inteligente para avaliação da capacidade de leitura, classificação de complexidade textual e mutação automatizada de narrativas.">
-    <!-- Google Fonts & Chart.js -->
+    <meta name="description"
+        content="Sistema inteligente para avaliação da capacidade de leitura, classificação de complexidade textual e mutação automatizada de narrativas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
+
 <body>
-    <!-- Header Navigation -->
     <header class="app-header">
         <div class="header-container">
             <div class="logo-brand">
@@ -21,25 +24,40 @@
                     <span>CAEd</span>
                 </div>
                 <div class="brand-text">
-                    <h1>Plataforma Fluência <span>AI</span></h1>
+                    <h1>Plataforma Fluência </h1>
                     <p>Avaliação & Gerador Adaptativo de Textos</p>
                 </div>
             </div>
             <nav class="nav-tabs">
                 <button class="nav-btn active" id="tab-btn-classifier" onclick="switchTab('classifier')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
                     Classificador & Canonicidade
                 </button>
                 <button class="nav-btn" id="tab-btn-mutator" onclick="switchTab('mutator')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+                        </path>
+                    </svg>
                     Estúdio de Mutação Textual
                 </button>
                 <button class="nav-btn" id="tab-btn-analytics" onclick="switchTab('analytics')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
                     Dashboard de Modelos
                 </button>
                 <button class="nav-btn" id="tab-btn-about" onclick="switchTab('about')">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
                     Documentação & Algoritmos
                 </button>
             </nav>
@@ -47,16 +65,14 @@
     </header>
 
     <main class="main-content container">
-        <!-- SEÇÃO 1: CLASSIFICADOR & ANÁLISE DE CANONICIDADE -->
         <section id="sec-classifier" class="tab-content active">
             <div class="grid-2col">
-                <!-- Painel de Entrada de Texto -->
                 <div class="glass-card left-panel">
                     <div class="card-header">
                         <h2>Análise de Complexidade & Canonicidade</h2>
                         <span class="badge badge-accent">Entrada de Texto</span>
                     </div>
-                    
+
                     <div class="sample-picker-bar">
                         <label>Carregar Exemplo do Dataset:</label>
                         <div class="sample-buttons">
@@ -68,19 +84,22 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea id="classify-input-text" rows="8" placeholder="Digite ou cole aqui a narrativa ou trecho de texto para classificar..."></textarea>
+                        <textarea id="classify-input-text" rows="8"
+                            placeholder="Digite ou cole aqui a narrativa ou trecho de texto para classificar..."></textarea>
                     </div>
 
                     <div class="action-bar">
                         <button id="btn-classify" class="btn btn-primary" onclick="handleClassify()">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
                             Analisar e Classificar Texto
                         </button>
                         <button class="btn btn-secondary" onclick="clearClassifierInput()">Limpar</button>
                     </div>
                 </div>
 
-                <!-- Painel de Resultados de Predição -->
                 <div class="glass-card right-panel">
                     <div class="card-header">
                         <h2>Diagnóstico de Complexidade</h2>
@@ -88,27 +107,28 @@
                     </div>
 
                     <div id="classifier-placeholder" class="placeholder-box">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        <p>Insira um texto e clique em <strong>Analisar e Classificar Texto</strong> para visualizar o nível predito, probabilidades e o índice de canonicidade silábica.</p>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <p>Insira um texto e clique em <strong>Analisar e Classificar Texto</strong> para visualizar o
+                            nível predito, probabilidades e o índice de canonicidade silábica.</p>
                     </div>
 
                     <div id="classifier-results" class="results-container hidden">
-                        <!-- Nível Predito Banner -->
                         <div class="prediction-hero-card">
                             <div class="hero-label">Nível de Escolaridade Predito</div>
                             <div class="hero-val" id="res-predicted-level">Ensino Fundamental I</div>
                             <div class="hero-sub" id="res-model-used">Modelo: Regressão Logística</div>
                         </div>
 
-                        <!-- Distribuição de Probabilidade por Nível -->
                         <div class="metric-section">
                             <h3>Distribuição de Probabilidade do Modelo</h3>
                             <div class="prob-bars-list" id="prob-bars-container">
-                                <!-- Preenchido dinamicamente via JavaScript -->
                             </div>
                         </div>
 
-                        <!-- Métrica de Canonicidade CV -->
                         <div class="metric-section">
                             <h3>Canonicidade Silábica (Padrão CV)</h3>
                             <div class="canonicity-score-box">
@@ -116,8 +136,10 @@
                                     <span id="res-canonicity-ratio">0.0%</span>
                                 </div>
                                 <div class="score-details">
-                                    <p><strong>Palavras Canônicas:</strong> <span id="res-canon-count">0</span> / <span id="res-total-words">0</span></p>
-                                    <p>Uma palavra canônica é formada exclusivamente por sílabas do tipo <code>Consoante + Vogal</code> (ex: <em>ca-be-ça</em>, <em>luta</em>).</p>
+                                    <p><strong>Palavras Canônicas:</strong> <span id="res-canon-count">0</span> / <span
+                                            id="res-total-words">0</span></p>
+                                    <p>Uma palavra canônica é formada exclusivamente por sílabas do tipo
+                                        <code>Consoante + Vogal</code> (ex: <em>ca-be-ça</em>, <em>luta</em>).</p>
                                 </div>
                             </div>
 
@@ -133,7 +155,6 @@
                             </div>
                         </div>
 
-                        <!-- Métricas Estilísticas e Legibilidade -->
                         <div class="metric-section">
                             <h3>Métricas de Legibilidade & Estrutura</h3>
                             <div class="stats-grid">
@@ -161,7 +182,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 2: ESTÚDIO DE MUTAÇÃO TEXTUAL -->
         <section id="sec-mutator" class="tab-content">
             <div class="glass-card">
                 <div class="card-header">
@@ -169,7 +189,8 @@
                     <span class="badge badge-accent">Geração & Reavaliação</span>
                 </div>
                 <p class="section-desc">
-                    Aplique mutações heurísticas no texto e verifique o quanto o modelo de inteligência artificial altera o nível de complexidade atribuído à narrativa.
+                    Aplique mutações heurísticas no texto e verifique o quanto o modelo de inteligência artificial
+                    altera o nível de complexidade atribuído à narrativa.
                 </p>
 
                 <div class="mutation-controls-grid">
@@ -199,7 +220,8 @@
                                 <span class="checkbox-custom"></span>
                                 <div>
                                     <strong>Troca de Gênero Gramatical</strong>
-                                    <small>Inverte gêneros (Ex: A cantora era famosa &rarr; O cantor era famoso).</small>
+                                    <small>Inverte gêneros (Ex: A cantora era famosa &rarr; O cantor era
+                                        famoso).</small>
                                 </div>
                             </label>
 
@@ -208,7 +230,8 @@
                                 <span class="checkbox-custom"></span>
                                 <div>
                                     <strong>Paráfrase & Reestruturação Sintática</strong>
-                                    <small>Transforma voz passiva/ativa, reorganiza apostos e locuções temporais.</small>
+                                    <small>Transforma voz passiva/ativa, reorganiza apostos e locuções
+                                        temporais.</small>
                                 </div>
                             </label>
                         </div>
@@ -221,7 +244,8 @@
                                 <span>Taxa de Substituição:</span>
                                 <span id="lbl-intensity-val" class="slider-val">30%</span>
                             </div>
-                            <input type="range" id="input-intensity" min="10" max="80" step="5" value="30" oninput="updateIntensityLabel(this.value)">
+                            <input type="range" id="input-intensity" min="10" max="80" step="5" value="30"
+                                oninput="updateIntensityLabel(this.value)">
                             <div class="slider-ticks">
                                 <span>Sutil (10%)</span>
                                 <span>Moderado (30%)</span>
@@ -231,28 +255,36 @@
 
                         <div class="preset-box">
                             <label style="font-size:0.85rem; color:var(--text-muted);">Texto para Mutação:</label>
-                            <button class="btn btn-secondary btn-sm" onclick="copyFromClassifier()">Copiar do Classificador</button>
+                            <button class="btn btn-secondary btn-sm" onclick="copyFromClassifier()">Copiar do
+                                Classificador</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group margin-top-md">
-                    <textarea id="mutate-input-text" rows="5" placeholder="Insira aqui o texto curto que deseja mutar..."></textarea>
+                    <textarea id="mutate-input-text" rows="5"
+                        placeholder="Insira aqui o texto curto que deseja mutar..."></textarea>
                 </div>
 
                 <div class="action-bar">
                     <button id="btn-mutate" class="btn btn-primary" onclick="handleMutate()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.13 15.57a10 10 0 1 0 3.8-11.66l-5.43 5.43"></path></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21.5 2v6h-6M2.13 15.57a10 10 0 1 0 3.8-11.66l-5.43 5.43"></path>
+                        </svg>
                         Gerar Mutação e Avaliar Impacto
                     </button>
                 </div>
             </div>
 
-            <!-- RESULTADO DA MUTAÇÃO - COMPARAÇÃO LADO A LADO -->
             <div id="mutation-results" class="margin-top-lg hidden">
                 <div class="shift-banner" id="shift-banner">
                     <div class="shift-icon-box" id="shift-icon-box">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
                     </div>
                     <div class="shift-info">
                         <h3 id="shift-title">Impacto na Complexidade Predita</h3>
@@ -261,7 +293,7 @@
                 </div>
 
                 <div class="grid-2col margin-top-md">
-                    <!-- Texto Original -->
+
                     <div class="glass-card">
                         <div class="card-header">
                             <h3>Texto Original</h3>
@@ -274,7 +306,6 @@
                         </div>
                     </div>
 
-                    <!-- Texto Mutado -->
                     <div class="glass-card">
                         <div class="card-header">
                             <h3>Texto Mutado (Novo Texto)</h3>
@@ -288,7 +319,6 @@
                     </div>
                 </div>
 
-                <!-- Visualização de Diffs -->
                 <div class="glass-card margin-top-md">
                     <div class="card-header">
                         <h3>Diferenças Detalhadas (Diff Visual)</h3>
@@ -303,7 +333,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 3: DASHBOARD DE MODELOS E BENCHMARK -->
         <section id="sec-analytics" class="tab-content">
             <div class="glass-card">
                 <div class="card-header">
@@ -311,7 +340,8 @@
                     <span class="badge badge-accent">Avaliação de Desempenho</span>
                 </div>
                 <p class="section-desc">
-                    Resultados do treinamento e validação cruzada estratificada sobre o dataset de materiais didáticos do MEC.
+                    Resultados do treinamento e validação cruzada estratificada sobre o dataset de materiais didáticos
+                    do MEC.
                 </p>
 
                 <div class="grid-2col margin-top-md">
@@ -341,7 +371,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Preenchido via JavaScript -->
                             </tbody>
                         </table>
                     </div>
@@ -349,7 +378,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 4: DOCUMENTAÇÃO & ALGORITMOS -->
         <section id="sec-about" class="tab-content">
             <div class="glass-card">
                 <div class="card-header">
@@ -360,30 +388,42 @@
                 <div class="doc-body">
                     <h3>1. Algoritmo de Canonicidade Silábica (Padrão CV)</h3>
                     <p>
-                        A canonicidade de uma palavra no idioma Português é a propriedade de ser formada exclusivamente por sílabas do tipo <code>Consonante + Vogal (CV)</code>.
+                        A canonicidade de uma palavra no idioma Português é a propriedade de ser formada exclusivamente
+                        por sílabas do tipo <code>Consonante + Vogal (CV)</code>.
                     </p>
                     <div class="code-block">
                         <strong>Definição Formal:</strong><br>
-                        Seja W uma sequência de caracteres. W é canônica &hArr; W satisfaz o padrão regular <code>^(CV)+$</code>, onde C representa qualquer consoante e V representa qualquer núcleo vocálico.
+                        Seja W uma sequência de caracteres. W é canônica &hArr; W satisfaz o padrão regular
+                        <code>^(CV)+$</code>, onde C representa qualquer consoante e V representa qualquer núcleo
+                        vocálico.
                     </div>
                     <ul>
-                        <li><strong>Exemplos Canônicos:</strong> <em>ca-be-ça</em> (C-V-C-V-C-V), <em>ca-ne-la</em>, <em>ja-ne-la</em>, <em>lu-ta</em>, <em>so-pa</em>.</li>
-                        <li><strong>Exemplos Não Canônicos:</strong> <em>abajur</em> (inicia com V), <em>lápis</em> (termina com CVC), <em>cansado</em> (sílaba CVC 'can'), <em>asa</em> (V-C-V), <em>alheio</em>.</li>
+                        <li><strong>Exemplos Canônicos:</strong> <em>ca-be-ça</em> (C-V-C-V-C-V), <em>ca-ne-la</em>,
+                            <em>ja-ne-la</em>, <em>lu-ta</em>, <em>so-pa</em>.</li>
+                        <li><strong>Exemplos Não Canônicos:</strong> <em>abajur</em> (inicia com V), <em>lápis</em>
+                            (termina com CVC), <em>cansado</em> (sílaba CVC 'can'), <em>asa</em> (V-C-V),
+                            <em>alheio</em>.</li>
                     </ul>
 
                     <h3>2. Extração de Atributos (Feature Engineering)</h3>
                     <p>O pipeline combina atributos estilísticos e representações vetoriais de linguagem:</p>
                     <ul>
                         <li><strong>Índice de Canonicidade:</strong> Proporção de palavras puramente CV no texto.</li>
-                        <li><strong>Métricas Gramaticais e Legibilidade:</strong> Índice Flesch adaptado para o Português, média de palavras por frase, comprimento médio de vocábulos e densidade de pontuação/símbolos.</li>
-                        <li><strong>Vetorização TF-IDF Dual:</strong> N-gramas de palavras (1 a 2) e N-gramas de caracteres (3 a 5) para capturar marcadores estilísticos e vocabulário didático.</li>
+                        <li><strong>Métricas Gramaticais e Legibilidade:</strong> Índice Flesch adaptado para o
+                            Português, média de palavras por frase, comprimento médio de vocábulos e densidade de
+                            pontuação/símbolos.</li>
+                        <li><strong>Vetorização TF-IDF Dual:</strong> N-gramas de palavras (1 a 2) e N-gramas de
+                            caracteres (3 a 5) para capturar marcadores estilísticos e vocabulário didático.</li>
                     </ul>
 
                     <h3>3. Operadores de Mutação Heurística</h3>
                     <ul>
-                        <li><strong>Troca de Palavras:</strong> Substituição automática por sinônimos ou antônimos mantendo a coesão.</li>
-                        <li><strong>Troca de Gênero:</strong> Mapeamento inteligente de artigos, pronomes, substantivos e adjetivos.</li>
-                        <li><strong>Paráfrase Sintática:</strong> Reestruturação de voz passiva para ativa, deslocamento de locuções temporais e inversão de orações com aposto.</li>
+                        <li><strong>Troca de Palavras:</strong> Substituição automática por sinônimos ou antônimos
+                            mantendo a coesão.</li>
+                        <li><strong>Troca de Gênero:</strong> Mapeamento inteligente de artigos, pronomes, substantivos
+                            e adjetivos.</li>
+                        <li><strong>Paráfrase Sintática:</strong> Reestruturação de voz passiva para ativa, deslocamento
+                            de locuções temporais e inversão de orações com aposto.</li>
                     </ul>
                 </div>
             </div>
@@ -396,4 +436,5 @@
 
     <script src="/static/app.js"></script>
 </body>
+
 </html>

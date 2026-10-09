@@ -1,26 +1,16 @@
-"""
-Módulo para extração de atributos (Features) de complexidade textual.
-Inclui métricas estilísticas, de legibilidade (Flesch), diversidade lexical e canonicidade silábica.
-"""
-
 import re
 import numpy as np
 import pandas as pd
 from backend.canonicity import analyze_text_canonicity, VOWELS
 
 def count_syllables_word(word: str) -> int:
-    """Estimativa de sílabas baseada em contagem de núcleos vocálicos."""
     word_clean = re.sub(r"[^a-zA-Záéíóúâêôãõàüç]", "", word.lower())
     if not word_clean:
         return 0
-    # Contar grupos vocálicos
     vowel_groups = re.findall(r"[aeiouáéíóúâêôãõàü]+", word_clean)
     return max(1, len(vowel_groups))
 
 def extract_text_features(text: str) -> dict:
-    """
-    Extrai um dicionário completo de features numéricas para um texto.
-    """
     clean_text = text.strip()
     words = re.findall(r"\b[a-zA-ZáéíóúâêôãõàüçÁÉÍÓÚÂÊÔÃÕÀÜÇ]+\b", clean_text)
     sentences = [s.strip() for s in re.split(r"[.!?]+", clean_text) if s.strip()]
@@ -46,31 +36,24 @@ def extract_text_features(text: str) -> dict:
             "numeric_symbol_ratio": 0.0
         }
     
-    # 1. Canonicidade
     canonicity_info = analyze_text_canonicity(clean_text)
     canonicity_ratio = canonicity_info["canonicity_ratio"]
     canonical_count = canonicity_info["canonical_words_count"]
     
-    # 2. Comprimentos
     avg_word_length = sum(len(w) for w in words) / total_words
     avg_sentence_length = total_words / total_sentences
     
-    # 3. Sílabas e Flesch
     syllable_counts = [count_syllables_word(w) for w in words]
     avg_syllables_per_word = sum(syllable_counts) / total_words if total_words > 0 else 0.0
     
-    # Flesch para Português (Flesch-Szigriszt / Martins)
     flesch = 248.835 - (1.015 * avg_sentence_length) - (84.6 * avg_syllables_per_word)
     
-    # 4. Palavras Complexas (> 7 caracteres)
     complex_words = [w for w in words if len(w) > 7]
     complex_word_ratio = len(complex_words) / total_words
     
-    # 5. Diversidade Lexical (Type-Token Ratio)
     unique_words = set(w.lower() for w in words)
     type_token_ratio = len(unique_words) / total_words
     
-    # 6. Pontuação e Símbolos
     punct_count = len(re.findall(r"[,;:()\"'—–-]", clean_text))
     punctuation_ratio = punct_count / total_chars if total_chars > 0 else 0.0
     

@@ -1,7 +1,3 @@
-"""
-Script para iniciar o servidor web da aplicação CAEd Fluência AI.
-"""
-
 import uvicorn
 import os
 

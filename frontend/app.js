@@ -1,8 +1,3 @@
-/**
- * Lógica da Aplicação Frontend - CAEd Fluência AI
- * Estilo Minimalista / Editorial
- */
-
 let samplesCache = {};
 let benchmarkChart = null;
 
@@ -11,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAnalytics();
 });
 
-// Navegação entre Abas
 function switchTab(tabId) {
     document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
     document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
@@ -22,7 +16,6 @@ function switchTab(tabId) {
     if (activeSec) activeSec.classList.add("active");
 }
 
-// Carregar Amostras do Dataset
 async function fetchSamples() {
     try {
         const res = await fetch("/api/samples");
@@ -56,7 +49,6 @@ function clearClassifierInput() {
     document.getElementById("predicted-badge").className = "badge badge-neutral";
 }
 
-// Classificação de Texto
 async function handleClassify() {
     const text = document.getElementById("classify-input-text").value.trim();
     if (!text) {
@@ -95,18 +87,16 @@ function renderClassifierResults(data) {
     document.getElementById("classifier-placeholder").classList.add("hidden");
     document.getElementById("classifier-results").classList.remove("hidden");
 
-    // Banner Nível Predito
     document.getElementById("res-predicted-level").innerText = data.predicted_level;
     document.getElementById("res-model-used").innerText = `Modelo Utilizado: ${data.model_used}`;
-    
+
     const badge = document.getElementById("predicted-badge");
     badge.innerText = `Predito: ${data.predicted_level}`;
     badge.className = "badge badge-accent";
 
-    // Barras de Probabilidade
     const container = document.getElementById("prob-bars-container");
     container.innerHTML = "";
-    
+
     const orderedLabels = ["Ensino Fundamental I", "Ensino Fundamental II", "Ensino Médio", "Ensino Superior"];
     orderedLabels.forEach(lbl => {
         const prob = data.probabilities[lbl] || 0;
@@ -127,19 +117,16 @@ function renderClassifierResults(data) {
         container.insertAdjacentHTML("beforeend", itemHtml);
     });
 
-    // Score de Canonicidade CV
     const canRatio = data.canonicity.ratio;
     const canPct = (canRatio * 100).toFixed(1);
     document.getElementById("res-canonicity-ratio").innerText = `${canPct}%`;
     document.getElementById("res-canon-count").innerText = data.canonicity.canonical_count;
     document.getElementById("res-total-words").innerText = data.canonicity.total_words;
 
-    // Atualiza gradiente circular
     const deg = canRatio * 360;
-    document.getElementById("score-circle").style.background = 
+    document.getElementById("score-circle").style.background =
         `conic-gradient(var(--accent) ${deg}deg, var(--border-subtle) ${deg}deg)`;
 
-    // Chips de Palavras
     const canonChips = document.getElementById("canon-chips");
     const nonCanonChips = document.getElementById("non-canon-chips");
     canonChips.innerHTML = "";
@@ -160,14 +147,12 @@ function renderClassifierResults(data) {
         nonCanonChips.innerHTML = `<span class="text-muted" style="font-size:0.75rem;">Nenhuma palavra não-CV encontrada</span>`;
     }
 
-    // Métricas Estilísticas
     document.getElementById("stat-flesch").innerText = data.features.flesch_reading_ease;
     document.getElementById("stat-avg-sentence").innerText = data.features.avg_sentence_length;
     document.getElementById("stat-avg-word").innerText = data.features.avg_word_length;
     document.getElementById("stat-complex").innerText = `${(data.features.complex_word_ratio * 100).toFixed(1)}%`;
 }
 
-// Mutação de Texto
 function updateIntensityLabel(val) {
     document.getElementById("lbl-intensity-val").innerText = `${val}%`;
 }
@@ -232,7 +217,6 @@ function renderMutationResults(data) {
     const resultsContainer = document.getElementById("mutation-results");
     resultsContainer.classList.remove("hidden");
 
-    // Banner de Mudança de Complexidade
     const shiftTitle = document.getElementById("shift-title");
     const shiftDesc = document.getElementById("shift-desc");
     const shiftIconBox = document.getElementById("shift-icon-box");
@@ -247,7 +231,6 @@ function renderMutationResults(data) {
         shiftIconBox.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
     }
 
-    // Texto Original & Mutado
     document.getElementById("mut-before-level").innerText = data.before.predicted_level;
     document.getElementById("mut-original-text").innerText = data.original_text;
     document.getElementById("mut-before-canon").innerText = `${(data.before.canonicity_ratio * 100).toFixed(1)}%`;
@@ -258,7 +241,6 @@ function renderMutationResults(data) {
     document.getElementById("mut-after-canon").innerText = `${(data.after.canonicity_ratio * 100).toFixed(1)}%`;
     document.getElementById("mut-after-flesch").innerText = data.after.features.flesch_reading_ease || 0;
 
-    // Rendering Diff Viewer
     const diffViewer = document.getElementById("diff-viewer-content");
     diffViewer.innerHTML = "";
 
@@ -275,13 +257,12 @@ function renderMutationResults(data) {
     });
 }
 
-// Carregar Dashboard e Gráficos de Analytics
 async function fetchAnalytics() {
     try {
         const res = await fetch("/api/analytics");
         if (!res.ok) return;
         const data = await res.json();
-        
+
         if (data.benchmark_results) {
             renderBenchmarkTable(data.benchmark_results);
             renderBenchmarkChart(data.benchmark_results);
@@ -379,7 +360,7 @@ function renderConfusionMatrix(results, activeModelName) {
         row.forEach((val, j) => {
             const isDiag = i === j;
             const bg = isDiag ? 'rgba(37, 99, 235, 0.2)' : 'rgba(255, 255, 255, 0.02)';
-            tableHtml += `<td style="background:${bg}; font-weight:${isDiag?'600':'normal'};">${val}</td>`;
+            tableHtml += `<td style="background:${bg}; font-weight:${isDiag ? '600' : 'normal'};">${val}</td>`;
         });
         tableHtml += `</tr>`;
     });

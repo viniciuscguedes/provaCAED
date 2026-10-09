@@ -1,15 +1,6 @@
-"""
-Módulo de Algoritmos de Mutação Textual.
-Implementa as 3 operações de mutação exigidas no edital:
-1. Troca de Palavras (Sinônimos e Antônimos)
-2. Troca de Gênero (Masculino <-> Feminino)
-3. Paráfrase (Transformações sintáticas, voz passiva/ativa, deslocamento de termos temporais e apostos).
-"""
-
 import re
 import random
 
-# Dicionário de Sinônimos e Antônimos em Português para substituição aleatória
 PORTUGUESE_SYNONYMS = {
     "pequeno": ["curto", "reduzido", "minúsculo"],
     "grande": ["enorme", "amplo", "extenso"],
@@ -50,9 +41,7 @@ PORTUGUESE_ANTONYMS = {
     "alegre": "triste"
 }
 
-# Mapeamento bidirecional para troca de gênero
 GENDER_MAP = {
-    # Artigos e Pronomes
     "o": "a", "a": "o",
     "os": "as", "as": "os",
     "um": "uma", "uma": "um",
@@ -67,7 +56,6 @@ GENDER_MAP = {
     "meus": "minhas", "minhas": "meus",
     "seu": "sua", "sua": "seu",
     "seus": "suas", "suas": "seus",
-    # Substantivos
     "menino": "menina", "menina": "menino",
     "meninos": "meninas", "meninas": "meninos",
     "aluno": "aluna", "aluna": "aluno",
@@ -87,7 +75,6 @@ GENDER_MAP = {
     "médico": "médica", "médica": "médico",
     "autor": "autora", "autora": "autor",
     "leitor": "leitora", "leitora": "leitor",
-    # Adjetivos
     "famoso": "famosa", "famosa": "famoso",
     "famosos": "famosas", "famosas": "famosos",
     "bonito": "bonita", "bonita": "bonito",
@@ -102,9 +89,6 @@ GENDER_MAP = {
 }
 
 def mutate_synonyms_antonyms(text: str, mode: str = "synonym", intensity: float = 0.3) -> str:
-    """
-    Substitui aleatoriamente palavras por sinônimos ou antônimos com base na intensidade.
-    """
     words = text.split()
     mutated = []
     
@@ -133,10 +117,6 @@ def mutate_synonyms_antonyms(text: str, mode: str = "synonym", intensity: float 
     return " ".join(mutated)
 
 def mutate_gender(text: str) -> str:
-    """
-    Troca o gênero gramatical de frases (Masculino <-> Feminino).
-    Ex: "A cantora era famosa" => "O cantor era famoso"
-    """
     words = text.split()
     mutated = []
     
@@ -156,12 +136,6 @@ def mutate_gender(text: str) -> str:
     return " ".join(mutated)
 
 def mutate_paraphrase(text: str) -> str:
-    """
-    Aplica regras de paráfrase e reestruturação sintática:
-    1. Voz passiva para voz ativa: 'O texto foi lido pelo aluno' => 'O aluno leu o texto'
-    2. Posição de aposto: 'O cantor Roberto Carlos fez aniversário' => 'Roberto Carlos, o cantor, fez aniversário'
-    3. Expressões temporais: 'Há duas semanas atrás estava chovendo' => 'Estava chovendo há duas semanas atrás'
-    """
     sentences = re.split(r"([.!?]+)", text)
     result_sentences = []
     
@@ -173,9 +147,6 @@ def mutate_paraphrase(text: str) -> str:
             continue
             
         modified = False
-        
-        # Regra 1: Voz Passiva -> Voz Ativa
-        # "O/A [Subst1] foi [verb_particípio] pelo/pela [Subst2]" => "O/A [Subst2] [verb_passado] o/a [Subst1]"
         m_passive = re.search(r"^(O|A|Os|As)\s+(.+?)\s+foi\s+(lido|escrito|avaliado|criado|feito)\s+pel[oa]s?\s+(.+)$", sentence, re.IGNORECASE)
         if m_passive:
             art1, obj, part, subj = m_passive.groups()
@@ -186,26 +157,18 @@ def mutate_paraphrase(text: str) -> str:
             past_verb = verb_map.get(part.lower(), "modificou")
             sentence = f"{subj.capitalize()} {past_verb} {art1.lower()} {obj}"
             modified = True
-
-        # Regra 2: Expressão temporal inicial -> Final da frase
-        # "Há [tempo] atrás [oração]" => "[oração] há [tempo] atrás"
         if not modified:
             m_time = re.search(r"^(Há\s+[\w\s]+\s+atrás),?\s+(.+)$", sentence, re.IGNORECASE)
             if m_time:
                 time_expr, clause = m_time.groups()
                 sentence = f"{clause.capitalize()} {time_expr.lower()}"
                 modified = True
-                
-        # Regra 3: Inversão de Aposto / Título
-        # "O [cargo] [Nome Próprio] [verbo...]" => "[Nome Próprio], o [cargo], [verbo...]"
         if not modified:
             m_app = re.search(r"^(O|A)\s+(cantor|professor|aluno|cientista|médico|autor)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(.+)$", sentence)
             if m_app:
                 art, title, name, rest = m_app.groups()
                 sentence = f"{name}, {art.lower()} {title}, {rest}"
                 modified = True
-                
-        # Regra 4: Se nenhuma regra específica aplicou, inverte orações subordinadas com vírgulas se houver
         if not modified and "," in sentence:
             parts = sentence.split(",", 1)
             if len(parts) == 2 and len(parts[0].split()) > 2 and len(parts[1].split()) > 2:
@@ -216,9 +179,6 @@ def mutate_paraphrase(text: str) -> str:
     return " ".join(result_sentences)
 
 def apply_mutations(text: str, operations: list[str], intensity: float = 0.3) -> dict:
-    """
-    Aplica uma sequência de operações de mutação ao texto e retorna o resultado.
-    """
     current_text = text
     applied_ops = []
     

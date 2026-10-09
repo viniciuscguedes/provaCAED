@@ -1,4 +1,4 @@
-# 📚 Plataforma CAEd - Avaliação de Fluência Leitora e Gerador de Textos
+# Plataforma CAEd - Avaliação de Fluência Leitora e Gerador de Textos
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-1.0.0-green.svg)](https://fastapi.tiangolo.com/)
@@ -9,7 +9,7 @@
 
 ---
 
-## 🌟 Recursos Principais
+## Recursos Principais
 
 1. **Modelo de Predição de Complexidade Leitora**:
    - Classificação em 4 níveis de escolaridade com **91,83% de Acurácia** (Linear SVM Calibrado).
@@ -30,7 +30,7 @@
 
 ---
 
-## 🚀 Como Executar a Aplicação
+## Como Executar a Aplicação
 
 ### 1. Clonar o Repositório e Instalar Dependências
 ```bash
@@ -58,7 +58,7 @@ python train_and_eval.py
 
 ---
 
-## 📂 Estrutura do Repositório
+## Estrutura do Repositório
 
 ```text
 provaCAED/
@@ -84,9 +84,9 @@ provaCAED/
 
 ---
 
-## 📄 Documentação Oficial
-- 📖 [Relatório Técnico em PDF (`RELATORIO.pdf`)](RELATORIO.pdf)
-- 🛠️ [Guia Explicativo dos Códigos (`GUIA_CODIGOS_E_ENVIO.pdf`)](GUIA_CODIGOS_E_ENVIO.pdf)
+## Documentação Oficial
+- [Relatório Técnico em PDF (`RELATORIO.pdf`)](RELATORIO.pdf)
+- [Guia Explicativo dos Códigos (`GUIA_CODIGOS_E_ENVIO.pdf`)](GUIA_CODIGOS_E_ENVIO.pdf)
 
 ---
 *Desenvolvido para o Processo Seletivo CAEd 2026.*

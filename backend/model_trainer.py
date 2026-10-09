@@ -1,7 +1,3 @@
-"""
-Módulo para Treinamento, Avaliação Comparativa e Persistência dos Modelos de Predição de Complexidade.
-"""
-
 import os
 import joblib
 import numpy as np
@@ -39,7 +35,6 @@ class ComplexityClassifierPipeline:
         ]
 
     def _prepare_features(self, df: pd.DataFrame, is_train: bool = True):
-        """Concatena features estilísticas numéricas com TF-IDF de palavras e caracteres."""
         tabular_df = extract_features_df(df)[self.feature_columns]
         
         if is_train:
@@ -55,9 +50,6 @@ class ComplexityClassifierPipeline:
         return X_combined, tabular_df
 
     def train_and_evaluate_all(self, df: pd.DataFrame):
-        """
-        Treina múltiplos modelos e retorna o benchmark completo com estatísticas comparativas.
-        """
         X_train_df, X_test_df, y_train, y_test = train_test_split(
             df, df["label"], test_size=0.2, random_state=42, stratify=df["label"]
         )
@@ -76,12 +68,7 @@ class ComplexityClassifierPipeline:
         best_model_obj = None
         best_name = ""
         
-        print("\n" + "="*50)
-        print("INICIANDO TREINAMENTO E AVALIAÇÃO COMPARATIVA DE MODELOS")
-        print("="*50)
-        
         for name, clf in models_to_test.items():
-            print(f"Treinando {name}...")
             clf.fit(X_train_comb, y_train)
             y_pred = clf.predict(X_test_comb)
             
@@ -100,20 +87,15 @@ class ComplexityClassifierPipeline:
                 "recall": round(recall, 4),
                 "confusion_matrix": cm.tolist()
             }
-            
-            print(f" -> {name} | Acurácia: {acc:.4f} | F1-Macro: {f1_macro:.4f} | F1-Weighted: {f1_weighted:.4f}")
-            
+              
             if f1_macro > best_f1:
                 best_f1 = f1_macro
                 best_model_obj = clf
                 best_name = name
-                
-        print(f"\nMelhor Modelo Escolhido: {best_name} (F1-Macro: {best_f1:.4f})")
         
         self.model = best_model_obj
         self.model_name = best_name
         
-        # Salva o pipeline treinado
         os.makedirs(MODEL_DIR, exist_ok=True)
         save_path = os.path.join(MODEL_DIR, "complexity_model.pkl")
         joblib.dump({
@@ -126,14 +108,10 @@ class ComplexityClassifierPipeline:
             "ordered_labels": ORDERED_LABELS,
             "benchmark_results": results
         }, save_path)
-        print(f"Modelo salvo em {save_path}")
         
         return results
 
     def predict_single(self, text: str) -> dict:
-        """
-        Prediz o nível de complexidade de um único texto com probabilidades.
-        """
         df_single = pd.DataFrame([{"text": text}])
         tabular_df = extract_features_df(df_single)[self.feature_columns]
         
@@ -160,7 +138,6 @@ class ComplexityClassifierPipeline:
         }
 
 def load_trained_pipeline():
-    """Carrega o pipeline pré-treinado do disco."""
     save_path = os.path.join(MODEL_DIR, "complexity_model.pkl")
     if not os.path.exists(save_path):
         return None
